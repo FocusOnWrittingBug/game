@@ -2,10 +2,11 @@ function rb() {
 	for(var i=0;i<aA.length;i++){
 		var count=0;
 		var flag='';
-		for (var j = aA[i].length; j > 0; j--) {
-			for (var k = 0; k < aA[i].length; k++) {
-				console.log()
-				/*if((i+k)<=aA.length-1&&(j-k)>=0){
+		for (var j = aA.length; j > 0; j--) {
+			for (var k = 0; k < aA.length; k++) {
+
+				if((i+k)<=aA.length-1&&(j-k)>=0&&(j-k)<=aA.length-1){
+                    //console.log((i+k)+','+(j-k));
 					if(aA[i+k][j-k].innerHTML==='X'){
 						flag==''||flag=='x'?count++:count=0;
 						flag='x';
@@ -18,7 +19,7 @@ function rb() {
 					if(count==5){
 						return true;
 					}
-				}*/
+				}
 				
 			}
 		}
