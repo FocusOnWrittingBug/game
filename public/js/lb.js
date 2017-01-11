@@ -16,7 +16,7 @@ function lb(row) {
 					}else if(row[j+k][i+k].innerHTML===''){
 						count=0;
 					};
-					if(count==5){
+					if(count>=5){
 						return true;
 					};
 					

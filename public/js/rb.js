@@ -15,7 +15,7 @@ function rb(row) {
 					}else if(row[i+k][j-k].innerHTML===''){
 						count=0;
 					}
-					if(count==5){
+					if(count>=5){
 						return true;
 					}
 				}

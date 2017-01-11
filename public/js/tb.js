@@ -12,7 +12,8 @@ function tb(row){
 			}else if(row[j][i].innerHTML===''){
 				count=0;
 			}
-			if(count==5){
+			console.log('tb'+count);
+			if(count>=5){
 				return true;
 			}
 		}

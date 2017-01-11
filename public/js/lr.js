@@ -12,7 +12,8 @@ function lr(row){
 			}else if(row[i][j].innerHTML===''){
 				count=0;
 			}
-			if(count==5){
+			console.log('lr'+count);
+			if(count>=5){
 				return true;
 			}
 		}
