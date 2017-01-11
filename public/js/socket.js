@@ -1,4 +1,4 @@
-var clientsocket=io();
+
 clientsocket.on('message',function(data){
 	var type=data.type;
 	switch(type){
@@ -35,14 +35,14 @@ function handleLogin(data){
 		isLogin=false;
 	}
 }
-function handlerOut(data){
+function handleOut(data){
 	chess='X';
 	turn=true;
 }
 function handleSelfPlay(data){
 
 }
-function handleotherPlay(data){
+function handleOtherPlay(data){
 	putChess(data.chess,data.position);
 	turn=true;
 }

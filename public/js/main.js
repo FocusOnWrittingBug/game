@@ -1,3 +1,4 @@
+var clientsocket=io();
 var isLogin=false;
 var isFull=false;
 var turn=true;
@@ -9,7 +10,7 @@ var selfPlay=true;
 //}
 var joinBtn=document.getElementById('join');
 joinBtn.onclick=function () {
-	if(isLogin){
+	if(!isLogin){
 		clientsocket.send({type:'login'});
 	}
 	

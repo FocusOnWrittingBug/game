@@ -1,18 +1,24 @@
 var socketIo=require('socket.io');
-var userssocket=[];
+var userssocket={};
+var users=[];
 module.exports=function(httpserver){
 	var socketserver=socketIo.listen(httpserver);
 	socketserver.on('connect',function(socket){
 		console.log('connect');
+        var id=socket.id;
 		socket.on('message',function(data){
+            console.log('mes');
 			var type=data.type;
 			switch(type){
 				case 'login':
-					if(userssocket.length=0){
-						userssocket.push(socket);
+					if(users.length==0){
+
+						users.push(id);
+                        userssocket[id]=socket;
 						handleLogin(socket,'X',true);
-					}else if(userssocket.length=1){
-						userssocket.push(socket);
+					}else if(users.length==1){
+                        users.push(id);
+                        userssocket[id]=socket;
 						handleLogin(socket,'O',false);
 					}else{
 						var msg={
@@ -30,8 +36,9 @@ module.exports=function(httpserver){
 			}
 		});
 		socket.on('disconnect',function(){
-			userssocket.splice(socket,1);
-			if(userssocket.length==1){
+			users.splice(id,1);
+            delete userssocket[id];
+			if(users.length==1){
 				handleOut(socket);
 			}
 			
@@ -46,10 +53,11 @@ function handleLogin(socket,chess,turn){
 		turn:turn,
 		isFull:false
 	}
-	if(userssocket.length==2){
+	if(users.length==2){
 		msg.isFull=true;
+        socket.broadcast.send({isFull:true});
 	}
-	socket.broadcast.send({isFull:true});
+
 	socket.send(msg);
 };
 function handleOut(socket){
