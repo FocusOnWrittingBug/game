@@ -1,0 +1,6 @@
+*{margin:0;padding: 0;}
+ul{list-style: none}
+a{text-decoration: none;}
+#wrap{}
+#wrap li{overflow: hidden;}
+#wrap li a{width: 28px;height: 28px;float: left;border: 1px solid #ccc;text-align: center;color:#ccc;font-size: 25px;line-height: 25px;font-weight: bold;}
