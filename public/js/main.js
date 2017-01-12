@@ -1,7 +1,7 @@
 var clientsocket=io();
 var isLogin=false;
 var isFull=false;
-var turn=true;
+var turn=false;
 var chess='';
 var selfPlay=true;
 //if(isLogin&&isFull){

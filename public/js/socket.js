@@ -5,6 +5,8 @@ clientsocket.on('message',function(data){
 		case 'login':
 			handleLogin(data);
 			break;
+		case 'isFull':
+			handleFull(data);	
 		case 'otherOut':
 			handleOut(data);
 			break;	
@@ -22,6 +24,7 @@ function handleLogin(data){
 	if(data.flag){
 		alert('加入成功');
 		isLogin=true;
+		turn=data.turn;
 		chess=data.chess;
 		if(data.isFull){
 			isFull=true;
@@ -34,6 +37,11 @@ function handleLogin(data){
 		alert('啊哦，人满了');
 		isLogin=false;
 	}
+}
+function handleFull(data){
+	isFull=true;
+	newGame();
+	play();
 }
 function handleOut(data){
 	chess='X';
@@ -48,4 +56,6 @@ function handleOtherPlay(data){
 }
 function handleGameOver(data){
 	alert(data.chess+'赢了');
+	newGame();
+	play();
 }

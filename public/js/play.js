@@ -1,26 +1,33 @@
 function play(){
+	console.log('play');
+	console.log(turn);
 	var aLi=document.getElementsByTagName('li');
 	var row=[];
 	for (var i = 0; i < aLi.length; i++) {
 		row[i]=aLi[i].getElementsByTagName('a');
 	}
+	console.log(row);
 	//var turn=true;
 	//for(var i=0;i<row.length;i++){
-		for (var j = 0; j < row.length; j++) {
-			for (var k = 0; k < row[j].length; k++) {
+		for (let j = 0; j < row.length; j++) {
+			
+			for (let k = 0; k < row[j].length; k++) {
 				//row[j][k].flag=true;
 				row[j][k].onclick=function(){
-					if (turn&&this.innerHTML!='') {
+
+					if (turn&&this.innerHTML=='') {
+						console.log('click');
                         this.innerHTML=chess;
                         turn=false;
                         var msg={
                         	type:'play',
                         	position:{
                         		row:j,
-                        		col:i
+                        		col:k
                         	},
                         	chess:chess
                         }
+                        console.log(msg);
                         clientsocket.send(msg);
                         //this.flag=false;
                         //turn=!turn;

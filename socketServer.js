@@ -4,8 +4,10 @@ var users=[];
 module.exports=function(httpserver){
 	var socketserver=socketIo.listen(httpserver);
 	socketserver.on('connect',function(socket){
-		console.log('connect');
+		
         var id=socket.id;
+        console.log(id);
+
 		socket.on('message',function(data){
             console.log('mes');
 			var type=data.type;
@@ -16,10 +18,12 @@ module.exports=function(httpserver){
 						users.push(id);
                         userssocket[id]=socket;
 						handleLogin(socket,'X',true);
+						console.log(users);
 					}else if(users.length==1){
                         users.push(id);
                         userssocket[id]=socket;
 						handleLogin(socket,'O',false);
+						console.log(users);
 					}else{
 						var msg={
 							type:'login',
@@ -36,12 +40,13 @@ module.exports=function(httpserver){
 			}
 		});
 		socket.on('disconnect',function(){
+			console.log('disconnect');
 			users.splice(id,1);
             delete userssocket[id];
 			if(users.length==1){
 				handleOut(socket);
 			}
-			
+			console.log(users);
 		})
 	})
 }
@@ -55,7 +60,8 @@ function handleLogin(socket,chess,turn){
 	}
 	if(users.length==2){
 		msg.isFull=true;
-        socket.broadcast.send({isFull:true});
+        socket.broadcast.send({type:'isFull'});
+        console.log('full');
 	}
 
 	socket.send(msg);
